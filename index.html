@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- fonts -->
+<link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css'>
+<!-- styles -->
+<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<!-- le javascript -->
+<script src="jquery.js"></script>
+</head>
+<body>
+<!-- begin header -->  
+<div class="masthead">
+    <div class="wrapper">
+      <h1 class="logo imgreplace"><a href="/">DIGITALDENTISTRY.tv</a></h1>
+
+    </div>
+  </div>
+<!-- end header -->
+
+<!-- begin app -->  
+  
+  	<div class="zSearchBar">
+  		<p class="results">Displaying top <span id="numberOfResults"></span> results</p>
+  		<div class="pull-right">
+  			<div class="input-append">
+          <input class="span2" id="appendedInput" type="text" placeholder="Search Videos">
+          <span id="submit-search" class="add-on"><icon class="icon-search"></i></span>
+        </div>
+  		</div>
+  	</div>
+  	<div class="zList"></div>
+
+  </div>
+  <div class="zPlayer">
+    <div class="inner">
+    <div class="zVideo">
+      <!-- Start of Video Player -->
+
+
+
+      <!-- End of Video Player -->
+    </div>
+    <div class="zInfo">
+      <form>
+        <fieldset>
+          <legend id="video-title"></legend>
+          <label>Project Lead:</label>
+          <input type="text" placeholder="Your Name">
+          <label>Notes:</label>
+          <textarea></textarea>
+          <button id="submit-custom-fields" class="btn" style="display:block;">Submit</button>
+        </fieldset>
+        <p style="padding-top:20px;"><a id="video-link" class="label label-warning" href="#">Download this Video</a></p>
+      </form>
+      <div id="list-links">
+         <div id="dynamic-links"></div>
+         <p style="padding-top:20px;"><a id="video-info-link" class="label label-important" href="#">Hide Video Links</a></p>
+      </div>
+    </div>
+    </div>
+    <div class="closeZPlayer"><p>Close</p></div>
+  </div>
+
+	<script src="app.js"></script>
+</body>
+</html>
