@@ -1,68 +1,118 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!-- fonts -->
+<title>Sirona.TV Library</title>
 <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css'>
-<!-- styles -->
 <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-<!-- le javascript -->
-<script src="jquery.js"></script>
+<!-- BEGIN CSS -->
+<link rel="stylesheet" type="text/css" href="style.css">
+
 </head>
 <body>
-<!-- begin header -->  
-<div class="masthead">
+  <!-- begin header -->  
+  <div class="masthead">
     <div class="wrapper">
-      <h1 class="logo imgreplace"><a href="/">DIGITALDENTISTRY.tv</a></h1>
-
+      <h1 class="logo imgreplace"><a id="the-logo" href="#">SIRONALIBRARY.tv</a></h1>
     </div>
   </div>
-<!-- end header -->
+  <!-- end header -->
 
-<!-- begin app -->  
-  
-  	<div class="zSearchBar">
-  		<p class="results">Displaying top <span id="numberOfResults"></span> results</p>
-  		<div class="pull-right">
-  			<div class="input-append">
-          <input class="span2" id="appendedInput" type="text" placeholder="Search Videos">
+  <!-- begin app -->  
+    
+  <div class="zSearchBar" style="position:relative;">
+    	<p class="results">Displaying top <span id="numberOfResults"></span></p>
+    	<div class="pull-right" style="position: absolute;
+right: 0;
+top: 60px;">
+          <div id="filter-btn" class="dropdown hidden">
+            <a class="dropdown-toggle btn" data-toggle="dropdown" href="#">
+              <i class="icon-filter icon-large"></i>
+              <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu" id="filters" role="menu" aria-labelledby="dLabel">
+              <li><a class="sort-alpha" href="#">Sort Alphabetically</a></li>
+              <li><a class="sort-total" href="#">Sort by Total Views</a></li>
+             <!--  <li><a class="sort-pop" href="#">Sort by Popularity</a></li>
+              <li><a class="sort-new" href="#">Sort by Newest-Oldest</a></li>
+              <li><a class="sort-old" href="#">Sort by Oldest-Newest</a></li> -->
+            </ul>
+          </div>
+          <div class="dropdown">
+            <a class="dropdown-toggle btn" data-toggle="dropdown" href="#">
+              <i class="icon-text-width icon-large"></i>
+              <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+              <li class="active"><a class="search-text" href="#">Search by Title</a></li>
+              <li><a class="search-tags" href="#">Search by Tags</a></li>
+            </ul>
+          </div>
+    		<div class="input-append">
+          <input class="span3" id="appendedInput" type="text" placeholder="Search Videos">
           <span id="submit-search" class="add-on"><icon class="icon-search"></i></span>
+          <span id="clear-search" class="add-on"><icon class="icon-remove-circle"></i></span>
         </div>
-  		</div>
-  	</div>
-  	<div class="zList"></div>
-
+    </div>
   </div>
+    	
+  <div class="zList">
+    <div class="zLoader"></div>
+   <!--  <div class="zNextBatch"><a id="load-more" class="btn btn-lage btn-block btn-bottom" href="#">Load more</a> -->
+    </div>
+  </div>
+
   <div class="zPlayer">
     <div class="inner">
-    <div class="zVideo">
-      <!-- Start of Video Player -->
-
-
-
-      <!-- End of Video Player -->
-    </div>
-    <div class="zInfo">
-      <form>
-        <fieldset>
-          <legend id="video-title"></legend>
-          <label>Project Lead:</label>
-          <input type="text" placeholder="Your Name">
-          <label>Notes:</label>
-          <textarea></textarea>
-          <button id="submit-custom-fields" class="btn" style="display:block;">Submit</button>
-        </fieldset>
-        <p style="padding-top:20px;"><a id="video-link" class="label label-warning" href="#">Download this Video</a></p>
-      </form>
-      <div id="list-links">
-         <div id="dynamic-links"></div>
-         <p style="padding-top:20px;"><a id="video-info-link" class="label label-important" href="#">Hide Video Links</a></p>
+      <div class="zVideo">
+        <!-- Start of Video Player -->
+        <!-- End of Video Player -->
       </div>
-    </div>
+      <div class="zInfo">
+          <legend id="video-title"></legend>
+          <form id="baby" class="hidden">
+            <fieldset>
+              <label>Description:</label>
+              <textarea id="ginger" disabled="disabled" type="text" name="description" placeholder="Description">
+              </textarea>
+              <label>Notes:</label>
+              <textarea id="posh" name="" disabled="disabled"></textarea>
+              
+              <input id="spice-up-your-life" type="submit" class="btn" value="Update">
+            </fieldset>
+            <p style="padding-top:20px;"><button type="submit" class="label label-primary">Submit</button> <a id="video-link" class="label label-warning" href="#">Download this Video</a></p>
+          </form>
+          <div id="list-links">
+             <p style="padding-bottom:20px;"><a class="hidden" id="video-info-link" class="label label-important" href="#">Hide Video Links</a></p>
+             <div id="dynamic-links"></div>
+             <p style="padding-top:20px">Right-click or control-click link to download</p>
+          </div>
+      </div>
     </div>
     <div class="closeZPlayer"><p>Close</p></div>
   </div>
 
-	<script src="app.js"></script>
+  <div class="modal">
+    <div class="modal-header">
+      <button type="button" class="idk close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      <h3>Enter password to access library</h3>
+    </div>
+    <div class="modal-body">
+      <input type="password" class="input-xl" id="booYah" autofocus>
+    </div>
+    <div class="modal-footer">
+      <button class="idk btn">I don't know</button> <button id="guess-password" class="btn btn-success">Submit</button>
+      </div>
+  </div>
+    
+  <div id="scroll-to-top"></div>
+  <div id="scary"></div>
+<!-- BEGIN JAVASCRIPT -->
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="http://admin.brightcove.com/js/BrightcoveExperiences.js"></script>
+<script src="app.js"></script>
+<!-- END JAVASCRIPT -->
+
+
 </body>
 </html>
